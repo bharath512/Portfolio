@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "@fontsource/bebas-neue/latin-400.css";
+@import "@fontsource/abel/latin-400.css";
+
+/*
+ * Design tokens sampled from the reference design (Tailwind v4 is CSS-first:
+ * this @theme block replaces tailwind.config.js).
+ *   navy-950 → navy-900 : the black-to-navy gradient of the cover and project pages
+ *   navy-800            : progress-bar fill and the "TECHNICAL SKILLS" title
+ *   paper / paper-dim   : the light grey document pages
+ *   mist                : the grey sub-title / secondary text on dark pages
+ */
+@theme {
+  --font-display: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --font-sans: "Abel", "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0b0b12;
+  --color-muted: #4a4a58;
+  --color-paper: #f4f4f6;
+  --color-paper-dim: #e6e6ec;
+  --color-mist: #b9b9cc;
+  --color-navy-950: #000010;
+  --color-navy-900: #00002e;
+  --color-navy-800: #0a0a5c;
+  --color-navy-600: #2a2aa0;
+
+  /* Fluid size of the giant name on the cover. */
+  --text-display: clamp(4rem, 18vw, 18rem);
+  --text-display--line-height: 0.85;
+  --tracking-label: 0.06em;
+
+  --spacing-section: 6rem;
+  --container-page: 76rem;
+
+  /* Keyframes live inside @theme so they become the `animate-caret` utility. */
+  --animate-caret: caret 1s step-end infinite;
+  @keyframes caret {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/*
+ * The only hand-written CSS in the project: global focus ring. Tailwind has no
+ * utility for "every focusable element", and the colour flips per surface via
+ * the --focus custom property (see darkFocus in src/utils/ui.js).
+ */
+@layer base {
+  :root {
+    --focus: #1f1fa8;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+}
